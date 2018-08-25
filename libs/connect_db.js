@@ -1,10 +1,10 @@
-var mongoose = require(mongoose);
+var mongoose = require('mongoose');
 var db;
 
 module.exports = function(){
 
     if(!db){
-        db = mongoose.connect("mongodb://localhost/db-minha-academia")
+        db = mongoose.createConnection('mongodb://localhost/db-minha-academia')
     }
 
     return db;

@@ -1,14 +1,17 @@
-module.exports = function(){
-    var db = require('./../libs/connect_db')();
-    var Schema = require('mongoose').Schema;
+// var db = require('./../libs/connect_db')();
 
-    var academia = Schema({
-        nome: String,
-        endereco: String,
-        cnpj: Number,
-        username: String,
-        password: String
-    });
+var mongoose = require('mongoose');
+mongoose.connect('mongodb:localhost:27017/minha-academia', { useNewUrlParser: true });
 
-    return db.model('academia', academia);
-}
+var Schema = mongoose.Schema;
+    
+var Academia = new Schema({
+    nome: String,
+    endereco: String,
+    cnpj: Number,
+    username: String,
+    password: String
+});
+
+var teste = mongoose.model('Academia', Academia);
+module.exports= teste;

@@ -1,6 +1,7 @@
 'use strict';
 var mongoose = require('mongoose')
 var Academia = require('./../model/academia');
+var Promise = require('promise');
 
 
 module.exports = new class AcademiaRepository {
@@ -13,9 +14,10 @@ module.exports = new class AcademiaRepository {
         return Academia.findById(id);
     }
 
-    create(academia) {
-        return Academia.create(academia);
-    }
+    // create = function (res, res){
+    //     Academia.create(academia);
+    //     res.sendStatus(200);
+    // }
 
     update(id, academia) {
 

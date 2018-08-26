@@ -1,7 +1,21 @@
-// var db = require('./../libs/connect_db')();
+'use strict'
+var mongoose = require('mongoose')
 
-var mongoose = require('mongoose');
-mongoose.connect('mongodb:http://127.0.0.1:27017/', { useNewUrlParser: true });
+const server = 'ds229835.mlab.com:29835'
+const database = 'db-minha-academima'
+const user = 'user-test'
+const password = 'user123';
+
+// mongoose.createConnection('mongodb://user-test:user123@ds229835.mlab.com:29835/db-minha-academima'
+//                             , { useNewUrlParser: true })
+mongoose.connect('mongodb://localhost:27017/minha-academia', { useNewUrlParser: true },  (err, db) => {
+    if (err) {
+         console.log('err', err);
+    }
+    else { console.log('Connected', db)
+        }
+    }
+);
 
 var Schema = mongoose.Schema;
     

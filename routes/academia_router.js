@@ -1,6 +1,9 @@
 var express = require('express');
 var router = express.Router();
 var repository = require('../repository/academia_repository');
+var Promise = require('promise');
+var Academia = require('./../model/academia');
+
 
 router.get('/', function(req, res) {
   return repository.getAll();
@@ -9,13 +12,13 @@ router.get('/', function(req, res) {
 
 router.post('/', function(req, res, next){
   var body = req.body;
-  repository.create(body, function(err, academia){
+  Academia.create(body, function(err, academia){
     if(err){
       throw err;
     }
-
-    res.redirect('/');
+    res.send(academia);
   })
+  res.redirect('/');
 })
 
 router.get('/:id', function(req, res, next){

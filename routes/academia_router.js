@@ -1,34 +1,16 @@
 var express = require('express');
 var router = express.Router();
-var repository = require('../repository/academia_repository');
-var Promise = require('promise');
-var Academia = require('./../model/academia');
 
+const academia = require('../controllers/academia.controller');
 
-router.get('/', function(req, res) {
-  return repository.getAll();
+router.get('/', academia.findAll)
 
-});
+router.post('/', academia.create)
 
-router.post('/', function(req, res, next){
-  var body = req.body;
-  Academia.create(body, function(err, academia){
-    if(err){
-      throw err;
-    }
-    res.send(academia);
-  })
-  res.redirect('/');
-})
+router.get('/:academiaId', academia.findOne)
 
-router.get('/:id', function(req, res, next){
-  var id = req.params.id;
-  repository.findById(id, function(err, academia){
-    if(err){
-      throw err;
-    }
+router.put('/:academiaId', academia.update)
 
-  })
-})
+router.delete('/:academiaId', academia.delete)
 
 module.exports = router;

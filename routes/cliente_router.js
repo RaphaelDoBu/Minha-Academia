@@ -1,31 +1,15 @@
 var express = require('express');
 var router = express.Router();
-var repository = require('../repository/cliente_repository');
+var cliente = require('../controllers/cliente.controller');
 
-router.get('/', function(req, res) {
-  return repository.findById();
+router.get('/', cliente.findAll)
 
-});
+router.post('/', cliente.create)
 
-router.post('/', function(req, res, next){
-  var body = req.body;
-  repository.create(body, function(err, cliente){
-    if(err){
-      throw err;
-    }
+router.get('/:clienteId', cliente.findOne)
 
-    res.redirect('/');
-  })
-})
+router.put('/:clienteId', cliente.update)
 
-router.get('/:id', function(req, res, next){
-  var id = req.params.id;
-  repository.findById(id, function(err, cliente){
-    if(err){
-      throw err;
-    }
-
-  })
-})
+router.delete('/:clienteId', cliente.delete)
 
 module.exports = router;

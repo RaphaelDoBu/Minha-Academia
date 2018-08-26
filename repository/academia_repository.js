@@ -13,9 +13,8 @@ module.exports = new class AcademiaRepository {
         return Academia.findById(id);
     }
 
-    create(acad) {
-        console.log("entrou")
-        return Academia.create(acad);
+    create(academia) {
+        return Academia.create(academia);
     }
 
     update(id, academia) {

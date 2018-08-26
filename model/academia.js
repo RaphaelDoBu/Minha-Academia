@@ -1,7 +1,7 @@
 // var db = require('./../libs/connect_db')();
 
 var mongoose = require('mongoose');
-mongoose.connect('mongodb:localhost:27017/minha-academia', { useNewUrlParser: true });
+mongoose.connect('mongodb:http://127.0.0.1:27017/', { useNewUrlParser: true });
 
 var Schema = mongoose.Schema;
     
@@ -13,5 +13,5 @@ var Academia = new Schema({
     password: String
 });
 
-var teste = mongoose.model('Academia', Academia);
-module.exports= teste;
+var AcademiaDados = mongoose.model('Academia', Academia);
+module.exports= AcademiaDados;

@@ -3,8 +3,8 @@ var Academia = require('../model/academia');
 
 exports.findAll = function(req, res) {
     Academia.find()
-    .then(notes => {
-        res.send(notes);
+    .then(dados => {
+        res.send(dados);
     }).catch(err => {
         res.status(500).send({
             message: err.message || "Algum erro ocorreu ao recuperar academia"
@@ -13,6 +13,8 @@ exports.findAll = function(req, res) {
 }
 
 exports.create = (req, res) => {
+         console.log(req.body);
+
         if(!req.body.nome) {
             return res.status(400).send({
                 message: "Nome não pode ser vazio!"

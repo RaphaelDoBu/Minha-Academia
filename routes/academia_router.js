@@ -3,6 +3,7 @@ var router = express.Router();
 
 const academia = require('../controllers/academia.controller');
 
+
 router.get('/', academia.findAll)
 
 router.post('/', academia.create)

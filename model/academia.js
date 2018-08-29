@@ -8,6 +8,7 @@ var mongoose = require('mongoose')
 
 // mongoose.createConnection('mongodb://user-test:user123@ds229835.mlab.com:29835/db-minha-academima'
 //                             , { useNewUrlParser: true })
+
 mongoose.connect('mongodb://localhost:27017/minha-academia', { useNewUrlParser: true },  (err, db) => {
     if (err) {
          console.log('err', err);

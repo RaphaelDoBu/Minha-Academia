@@ -1,5 +1,7 @@
-var Academia = require('../model/academia');
-var bcrypt = require('bcrypt');
+const Academia = require('../model/academia');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+const authConfig = require('../config/auth.json');
 
 exports.autentica = async function(req, res) {
     const username = req.body.username;
@@ -17,7 +19,12 @@ exports.autentica = async function(req, res) {
         return res.status(400).send({error: 'Senha invalida'});
     }
 
-    res.send({user});
+    const token = jwt.sign({id: user.id}, authConfig.secret, {
+        //tempo para expirar o token
+        expiresIn: 86400,
+    });
+
+    res.send({user, token});
 
 
 }

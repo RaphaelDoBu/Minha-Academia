@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
-var cliente = require('../controllers/authenticate.controller');
+var academia = require('../controllers/authenticate.controller');
 
 
-router.post('/', cliente.autentica);
+router.post('/', academia.autentica);
 
 
 

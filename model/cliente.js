@@ -12,7 +12,7 @@ let mongoose = require('mongoose')
 mongoose.connect('mongodb://localhost:27017/minha-academia', { useNewUrlParser: true });
 
 var Schema = mongoose.Schema;
-    
+
 var Cliente = new Schema({
     nome: String,
     endereco: String,
@@ -20,6 +20,11 @@ var Cliente = new Schema({
     peso: String,
     dataNascimento: Date,
     foco: String
+    // academias:[{
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref: 'Academia',
+
+    // }]
 });
 
 var ClienteDados = mongoose.model('Cliente', Cliente);

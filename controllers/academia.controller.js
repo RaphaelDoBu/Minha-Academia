@@ -26,7 +26,7 @@ exports.create = (req, res) => {
             password: req.body.password
 
         });
-        
+
         dados.save()
         .then(data => {
             res.send(data);

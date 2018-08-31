@@ -9,10 +9,6 @@ router.use(authMiddleware);
 
 router.get('/', cliente.findAll)
 
-// router.get('/test', (req, res) =>{
-//     res.send({user: req.userId})
-// })
-
 router.post('/', cliente.create)
 
 router.get('/:clienteId', cliente.findOne)

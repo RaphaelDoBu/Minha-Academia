@@ -47,6 +47,8 @@ app.get('/swagger.json', function(req, res) {
     res.send(swaggerSpec);
 });
 
+
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -65,6 +67,9 @@ app.use('/users', users);
 app.use('/cliente', cliente);
 app.use('/academia', academia);
 app.use('/auth', autenticacao);
+
+app.get('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
 
 /// catch 404 and forwarding to error handler
 app.use(function(req, res, next) {

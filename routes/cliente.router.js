@@ -21,7 +21,7 @@ router.use(authMiddleware);
  *            -application/json:
  *         description: Todos os clientes cadastrados
  *         schema:
- *            $ref: '#/definitions/academia'
+ *            $ref: '#/definitions/cliente'
  *             
  */
 router.get('/', cliente.findAll)
@@ -51,6 +51,8 @@ router.get('/', cliente.findAll)
  *               type: string
  *             cpf:
  *               type: number
+ *             dataNascimento:
+ *               type: date
  *             peso:
  *               type: string
  *             foco:
@@ -59,7 +61,7 @@ router.get('/', cliente.findAll)
  *      201:
  *       description: Criado
  *       schema:
- *            $ref: '#/definitions/academia'
+ *            $ref: '#/definitions/cliente'
  */
 router.post('/', cliente.create)
 
@@ -85,7 +87,7 @@ router.post('/', cliente.create)
  *            -application/json:
  *         description: Cliente buscado
  *         schema:
- *            $ref: '#/definitions/academia'
+ *            $ref: '#/definitions/cliente'
  */
 router.get('/:clienteId', cliente.findOne)
 
@@ -113,7 +115,7 @@ router.get('/:clienteId', cliente.findOne)
  *            -application/json:
  *         description: Cliente atualizado
  *         schema:
- *            $ref: '#/definitions/academia'
+ *            $ref: '#/definitions/cliente'
  */
 router.put('/:clienteId', cliente.update)
 
@@ -139,8 +141,27 @@ router.put('/:clienteId', cliente.update)
  *            -application/json:
  *         description: Cliente deletado
  *         schema:
- *            $ref: '#/definitions/academia'
+ *            $ref: '#/definitions/cliente'
  */
 router.delete('/:clienteId', cliente.delete)
 
 module.exports = router;
+
+/**
+ * @swagger
+ * definition:
+ *   cliente:
+ *     properties:
+ *          nome:
+ *              type: string
+ *          endereco:
+ *              type: string
+ *          cpf:
+ *              type: number
+ *          peso:
+ *              type: string
+ *          dataNascimento:
+ *              type: date
+ *          foco:
+ *              type: string
+ */

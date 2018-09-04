@@ -8,9 +8,9 @@ var mongoose = require('mongoose');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
-var academia = require('./routes/academia_router');
-var cliente = require('./routes/cliente_router');
-var autenticacao = require('./routes/autenticacao_router');
+var academia = require('./routes/academia.router');
+var cliente = require('./routes/cliente.router');
+var autenticacao = require('./routes/autenticacao.router');
 
 var swaggerUi = require('swagger-ui-express');
 var swaggerJSDoc = require('swagger-jsdoc');

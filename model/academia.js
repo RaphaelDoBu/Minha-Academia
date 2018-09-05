@@ -37,7 +37,7 @@ var Academia = new Schema({
 Academia.pre('save', async function(next){
     const hash = await bcrypt.hashSync(this.password,10);
     this.password = hash;
-})
+});
 
 var AcademiaDados = mongoose.model('Academia', Academia);
 module.exports= AcademiaDados;

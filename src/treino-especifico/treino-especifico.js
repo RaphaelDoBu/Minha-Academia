@@ -13,23 +13,18 @@ mongoose.connect('mongodb://localhost:27017/minha-academia', { useNewUrlParser: 
 
 var Schema = mongoose.Schema;
 
-var Cliente = new Schema({
-    nome: String,
-    endereco: String,
-    cpf: Number,
-    peso: String,
-    dataNascimento: Date,
-    foco: String,
-    academias:[{
+var Treino = new Schema({
+    dia: String,
+    exercicio: String,
+    // academias:[{
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref: 'Academia',
+    // }]
+    cliente:[{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Academia'
-    }],
-    treinos:[{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Treino',
-
+        ref: 'Cliente',
     }]
 });
 
-var ClienteDados = mongoose.model('Cliente', Cliente);
-module.exports= ClienteDados;
+var TreinoDados = mongoose.model('Treino', Treino);
+module.exports= TreinoDados;

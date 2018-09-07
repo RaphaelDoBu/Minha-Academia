@@ -26,12 +26,15 @@ var Academia = new Schema({
     endereco: String,
     cnpj: Number,
     username: String,
-    password: String
-    // clientes:[{
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref: 'Cliente',
-
-    // }]
+    password: String,
+    clientes:[{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Cliente',
+    }],
+    createdAt:{
+        type: Date,
+        default: Date.now
+    }
 });
 
 Academia.pre('save', async function(next){

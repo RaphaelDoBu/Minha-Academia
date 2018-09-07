@@ -24,13 +24,13 @@ exports.create = (req, res) => {
             cpf: req.body.cpf,
             peso: req.body.peso,
             dataNascimento: req.body.dataNascimento,
-            foco: req.body.foco
+            foco: req.body.foco,
+            academias: req.userId
         });
         
         dados.save()
         .then(data => {
             res.send(data);
-            // res.redirect('/')
         }).catch(err => {
             res.status(500).send({
                 message: err.message || "Algum erro ocorreu ao criar a cliente!"

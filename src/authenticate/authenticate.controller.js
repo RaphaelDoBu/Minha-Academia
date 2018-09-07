@@ -1,7 +1,7 @@
-const Academia = require('../model/academia');
+const Academia = require('../academia/academia');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const authConfig = require('../config/auth.json');
+const authConfig = require('../../config/auth.json');
 
 function genereteToken(params = {}){
     return jwt.sign(params, authConfig.secret, {

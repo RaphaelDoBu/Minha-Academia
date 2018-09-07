@@ -1,35 +1,38 @@
 var express = require('express');
 var router = express.Router();
+var cliente = require('../cliente/cliente.controller');
 
-const academia = require('../controllers/academia.controller');
+const authMiddleware = require('../middlewares/auth')
+
+router.use(authMiddleware);
 
 /**
  * @swagger
- * /academia:
+ * /cliente:
  *   get:
  *     tags:
- *       - Academia
- *     description: Retornar todas as academias
+ *       - Cliente
+ *     description: Retornar todas os clientes
  *     produces:
  *       - application/json
  *     responses:
  *       200:
  *         content: 
  *            -application/json:
- *         description: Todos as academias cadastradas
+ *         description: Todos os clientes cadastrados
  *         schema:
- *            $ref: '#/definitions/academia'
+ *            $ref: '#/definitions/cliente'
  *             
  */
-router.get('/', academia.findAll)
+router.get('/', cliente.findAll)
 
 /**
  * @swagger
- * /academia:
+ * /cliente:
  *   post:
  *     tags:
- *       - Academia
- *     description: Criar uma academia
+ *       - Cliente
+ *     description: Criar um cliente
  *     consumes:
  *       - application/json
  *     produces:
@@ -46,32 +49,34 @@ router.get('/', academia.findAll)
  *               type: string
  *             endereco:
  *               type: string
- *             cnpj:
+ *             cpf:
  *               type: number
- *             username:
+ *             dataNascimento:
+ *               type: date
+ *             peso:
  *               type: string
- *             password:
+ *             foco:
  *               type: string
  *     responses:
  *      201:
  *       description: Criado
  *       schema:
- *            $ref: '#/definitions/academia'
+ *            $ref: '#/definitions/cliente'
  */
-router.post('/', academia.create)
+router.post('/', cliente.create)
 
 /**
  * @swagger
- * /academia/{academiaId}:
+ * /cliente/{clienteId}:
  *   get:
  *     tags:    
- *       - Academia
- *     description: Buscar uma academia
+ *       - Cliente
+ *     description: Buscar um cliente
  *     produces:
  *       - application/json
  *     parameters:
- *       - name: academiaId
- *         description: Id da academia
+ *       - name: clienteId
+ *         description: Id do cliente
  *         in: path
  *         schema:
  *           type: number
@@ -80,26 +85,26 @@ router.post('/', academia.create)
  *       200:
  *         content: 
  *            -application/json:
- *         description: Academia buscada
+ *         description: Cliente buscado
  *         schema:
- *            $ref: '#/definitions/academia'
+ *            $ref: '#/definitions/cliente'
  */
-router.get('/:academiaId', academia.findOne)
+router.get('/:clienteId', cliente.findOne)
 
 /**
  * @swagger
- * /academia/{academiaId}:
+ * /cliente/{clienteId}:
  *   put:
  *     tags:    
- *       - Academia
- *     description: Buscar uma academia
+ *       - Cliente
+ *     description: Atualizar um cliente
  *     consumes:
  *       - application/json
  *     produces:
  *       - application/json
  *     parameters:
- *       - name: academiaId
- *         description: Id da academia
+ *       - name: clienteId
+ *         description: Id do cliente
  *         in: path
  *         schema:
  *           type: number
@@ -108,24 +113,24 @@ router.get('/:academiaId', academia.findOne)
  *       200:
  *         content: 
  *            -application/json:
- *         description: Academia atualizada
+ *         description: Cliente atualizado
  *         schema:
- *            $ref: '#/definitions/academia'
+ *            $ref: '#/definitions/cliente'
  */
-router.put('/:academiaId', academia.update)
+router.put('/:clienteId', cliente.update)
 
 /**
  * @swagger
- * /academia/{academiaId}:
- *   delete:
+ * /cliente/{clienteId}:
+ *  delete:
  *     tags:    
- *       - Academia
- *     description: Deletar uma academia
+ *       - Cliente
+ *     description: Deletar um cliente
  *     produces:
  *       - application/json
  *     parameters:
- *       - name: academiaId
- *         description: Id da academia
+ *       - name: clienteId
+ *         description: Id do cliente
  *         in: path
  *         schema:
  *           type: number
@@ -134,30 +139,29 @@ router.put('/:academiaId', academia.update)
  *       200:
  *         content: 
  *            -application/json:
- *         description: Academia deletada
+ *         description: Cliente deletado
  *         schema:
- *            $ref: '#/definitions/academia'
+ *            $ref: '#/definitions/cliente'
  */
-router.delete('/:academiaId', academia.delete)
-
-
-
+router.delete('/:clienteId', cliente.delete)
 
 module.exports = router;
 
 /**
  * @swagger
  * definition:
- *   academia:
+ *   cliente:
  *     properties:
  *          nome:
  *              type: string
  *          endereco:
  *              type: string
- *          cnpj:
+ *          cpf:
  *              type: number
- *          username:
+ *          peso:
  *              type: string
- *          password:
+ *          dataNascimento:
+ *              type: date
+ *          foco:
  *              type: string
  */

@@ -4,13 +4,10 @@ var favicon = require('static-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var mongoose = require('mongoose');
 
-var routes = require('./routes/index');
-var users = require('./routes/users');
-var academia = require('./routes/academia.router');
-var cliente = require('./routes/cliente.router');
-var autenticacao = require('./routes/autenticacao.router');
+var academia = require('./src/academia/academia.router');
+var cliente = require('./src/cliente/cliente.router');
+var autenticacao = require('./src/authenticate/autenticacao.router');
 
 var swaggerUi = require('swagger-ui-express');
 var swaggerJSDoc = require('swagger-jsdoc');
@@ -34,7 +31,7 @@ var swaggerDefinition = {
     // import swaggerDefinitions
     swaggerDefinition: swaggerDefinition,
     // path to the API docs
-    apis: ['./**/routes/*.js','routes.js'],// pass all in array 
+    apis: ['./src/**/*.js','routes.js'],// pass all in array 
   
     };
   
@@ -62,8 +59,6 @@ app.use(bodyParser.urlencoded({
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', routes);
-app.use('/users', users);
 app.use('/cliente', cliente);
 app.use('/academia', academia);
 app.use('/auth', autenticacao);

@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var academia = require('../controllers/authenticate.controller');
+var authenticate = require('../authenticate/authenticate.controller');
 
 
 /**
@@ -32,7 +32,7 @@ var academia = require('../controllers/authenticate.controller');
  *       schema:
  *            $ref: '#/definitions/autenticacao'
  */
-router.post('/', academia.autentica);
+router.post('/', authenticate.autentica);
 
 
 

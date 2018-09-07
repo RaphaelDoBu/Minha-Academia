@@ -16,7 +16,7 @@ var options = {
       'https',  
     ],  
   },  
-  apis: ['./routes/*.js']
+  apis: ['./src/**/*.js']
 };
   
 const oasDefinition = swaggerJSDoc(options);  

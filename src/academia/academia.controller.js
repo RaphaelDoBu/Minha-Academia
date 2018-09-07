@@ -1,60 +1,63 @@
 'use strict';
-var Cliente = require('../model/cliente');
+var Academia = require('../academia/academia');
 
 exports.findAll = function(req, res) {
-    Cliente.find()
+    Academia.find()
     .then(dados => {
         res.send(dados);
     }).catch(err => {
         res.status(500).send({
-            message: err.message || "Algum erro ocorreu ao recuperar cliente"
+            message: err.message || "Algum erro ocorreu ao recuperar academia"
         });
     });
 }
 
+
 exports.create = (req, res) => {
+         console.log(req.body);
+
         if(!req.body.nome) {
             return res.status(400).send({
                 message: "Nome não pode ser vazio!"
             });
         }
-        const dados = new Cliente({
+        const dados = new Academia({
             nome: req.body.nome, 
             endereco: req.body.endereco,
-            cpf: req.body.cpf,
-            peso: req.body.peso,
-            dataNascimento: req.body.dataNascimento,
-            foco: req.body.foco
+            cnpj: req.body.cpf,
+            username: req.body.username,
+            password: req.body.password
+
         });
-        
+
         dados.save()
         .then(data => {
             res.send(data);
             // res.redirect('/')
         }).catch(err => {
             res.status(500).send({
-                message: err.message || "Algum erro ocorreu ao criar a cliente!"
+                message: err.message || "Algum erro ocorreu ao criar a academia!"
             });
         });
 };
 
 exports.findOne = (req, res) => {
-    Cliente.findById(req.params.clienteId)
+    Academia.findById(req.params.academiaId)
     .then(dados => {
         if(!dados) {
             return res.status(404).send({
-                message: "Não existe cliente com id " + req.params.clienteId
+                message: "Não existe academia com id " + req.params.academiaId
             });            
         }
         res.send(dados);
     }).catch(err => {
         if(err.kind === 'ObjectId') {
             return res.status(404).send({
-                message: "Não existe cliente com id " + req.params.clienteId
+                message: "Não existe academia com id " + req.params.academiaId
             });                
         }
         return res.status(500).send({
-            message: "Erro ao buscar com id " + req.params.clienteId
+            message: "Erro ao buscar com id " + req.params.academiaId
         });
     });
 };
@@ -66,50 +69,49 @@ exports.update = (req, res) => {
         });
     }
 
-    Cliente.findByIdAndUpdate(req.params.clienteId, {
+    Academia.findByIdAndUpdate(req.params.academiaId, {
         nome: req.body.nome, 
         endereco: req.body.endereco,
-        cpf: req.body.cpf,
-        peso: req.body.peso,
-        dataNascimento: req.body.dataNascimento,
-        foco: req.body.foco
+        cnpj: req.body.cpf,
+        username: req.body.username,
+        password: req.body.password
     }, {new: true})
     .then(dados => {
         if(!dados) {
             return res.status(404).send({
-                message: "Não existe cliente com id " + req.params.clienteId
+                message: "Não existe academia com id " + req.params.academiaId
             });
         }
         res.send(dados);
     }).catch(err => {
         if(err.kind === 'ObjectId') {
             return res.status(404).send({
-                message: "Não existe cliente com id " + req.params.clienteId
+                message: "Não existe academia com id " + req.params.academiaId
             });                
         }
         return res.status(500).send({
-            message: "Erro ao atualizar com o id " + req.params.clienteId
+            message: "Erro ao atualizar com o id " + req.params.academiaId
         });
     });
 };
 
 exports.delete = (req, res) => {
-    Cliente.findByIdAndRemove(req.params.clienteId)
+    Academia.findByIdAndRemove(req.params.academiaId)
     .then(dados => {
         if(!dados) {
             return res.status(404).send({
-                message: "Não existe cliente com id " + req.params.clienteId
+                message: "Não existe academia com id " + req.params.academiaId
             });
         }
-        res.send({message: "Cliente deletado com sucesso!"});
+        res.send({message: "Academia deletada com sucesso!"});
     }).catch(err => {
         if(err.kind === 'ObjectId' || err.name === 'NotFound') {
             return res.status(404).send({
-                message: "Não existe cliente com id  " + req.params.clienteId
+                message: "Não existe academia com id  " + req.params.academiaId
             });                
         }
         return res.status(500).send({
-            message: "Não foi possivel excluir com id " + req.params.clienteId
+            message: "Não foi possivel excluir com id " + req.params.academiaId
         });
     });
 };

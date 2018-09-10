@@ -24,7 +24,7 @@ exports.create = (req, res) => {
         const dados = new Academia({
             nome: req.body.nome, 
             endereco: req.body.endereco,
-            cnpj: req.body.cpf,
+            cnpj: req.body.cnpj,
             username: req.body.username,
             password: req.body.password
 

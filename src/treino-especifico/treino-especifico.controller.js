@@ -3,6 +3,17 @@ var Cliente = require('../cliente/cliente');
 var Treino = require('../treino-especifico/treino-especifico');
 
 
+exports.findAll = function(req, res) {
+    Treino.find()
+    .then(dados => {
+        res.send(dados);
+    }).catch(err => {
+        res.status(500).send({
+            message: err.message || "Algum erro ocorreu ao recuperar os treinos"
+        });
+    });
+}
+
 exports.createTreino = (req, res) => {
     if(!req.body.exercicio) {
         return res.status(400).send({

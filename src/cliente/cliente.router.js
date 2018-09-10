@@ -66,13 +66,6 @@ router.get('/', cliente.findAll)
 router.post('/', cliente.create)
 
 
-
-
-router.post('/:clienteId/treino', cliente.createTreino)
-
-
-
-
 /**
  * @swagger
  * /cliente/{clienteId}:

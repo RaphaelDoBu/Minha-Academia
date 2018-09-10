@@ -8,6 +8,7 @@ var bodyParser = require('body-parser');
 var academia = require('./src/academia/academia.router');
 var cliente = require('./src/cliente/cliente.router');
 var autenticacao = require('./src/authenticate/autenticacao.router');
+var treino = require('./src/treino-especifico/treino-especifico.router');
 
 var swaggerUi = require('swagger-ui-express');
 var swaggerJSDoc = require('swagger-jsdoc');
@@ -59,9 +60,13 @@ app.use(bodyParser.urlencoded({
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+//Rotas
+app.use('/treino', treino);
 app.use('/cliente', cliente);
 app.use('/academia', academia);
 app.use('/auth', autenticacao);
+///
 
 app.get('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 

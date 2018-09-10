@@ -59,7 +59,7 @@ router.get('/', cliente.findAll)
  *               type: string
  *     responses:
  *      201:
- *       description: Criado
+ *       description: Cliente criado
  *       schema:
  *            $ref: '#/definitions/cliente'
  */

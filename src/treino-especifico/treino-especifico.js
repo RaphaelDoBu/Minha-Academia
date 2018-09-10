@@ -16,14 +16,10 @@ var Schema = mongoose.Schema;
 var Treino = new Schema({
     dia: String,
     exercicio: String,
-    // academias:[{
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref: 'Academia',
-    // }]
-    cliente:[{
+    cliente:{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Cliente',
-    }]
+    }
 });
 
 var TreinoDados = mongoose.model('Treino', Treino);

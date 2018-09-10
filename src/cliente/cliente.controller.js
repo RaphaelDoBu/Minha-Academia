@@ -1,5 +1,6 @@
 'use strict';
 var Cliente = require('../cliente/cliente');
+var Treino = require('../treino-especifico/treino-especifico')
 
 exports.findAll = function(req, res) {
     Cliente.find()
@@ -37,6 +38,7 @@ exports.create = (req, res) => {
             });
         });
 };
+
 
 exports.findOne = (req, res) => {
     Cliente.findById(req.params.clienteId)

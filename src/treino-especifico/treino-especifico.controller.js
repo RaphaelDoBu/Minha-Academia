@@ -14,6 +14,18 @@ exports.findAll = function(req, res) {
     });
 }
 
+exports.findAllByCliente = function(req, res) {
+    Treino.find({ cliente:  req.params.clienteId })
+    .then(dados => {
+        res.send(dados);
+    }).catch(err => {
+        res.status(500).send({
+            message: err.message || "Algum erro ocorreu ao recuperar os treinos"
+        });
+    });
+}
+
+
 exports.createTreino = (req, res) => {
     if(!req.body.exercicio) {
         return res.status(400).send({

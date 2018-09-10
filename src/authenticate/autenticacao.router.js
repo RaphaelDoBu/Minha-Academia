@@ -32,7 +32,11 @@ var authenticate = require('../authenticate/authenticate.controller');
  *       schema:
  *            $ref: '#/definitions/autenticacao'
  */
-router.post('/', authenticate.autentica);
+router.post('/', authenticate.loginUser);
+
+
+
+router.post('/logout', authenticate.logOutUser);
 
 
 

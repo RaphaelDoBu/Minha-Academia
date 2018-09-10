@@ -60,3 +60,29 @@ exports.createTreino = (req, res) => {
     });
 
 };
+
+exports.deleteTreino = (req, res) => {
+    Cliente.findById(req.params.clienteId)
+    .then(dados => {
+        if(!dados) {
+            return res.status(404).send({
+                message: "Não existe cliente com id " + req.params.clienteId
+            });            
+        }
+        dados.treinos.remove(req.params.treinoId);
+        dados.save();
+        Treino.findByIdAndRemove(req.params.treinoId).exec();
+        res.send(dados);
+    }).catch(err => {
+        console.log(err)
+        if(err.kind === 'ObjectId') {
+            return res.status(404).send({
+                message: "Não existe cliente com id " + req.params.clienteId
+            });                
+        }
+        return res.status(500).send({
+            message: "Erro ao buscar com id " + req.params.clienteId
+        });
+    });
+
+};

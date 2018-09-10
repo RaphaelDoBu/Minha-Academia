@@ -7,7 +7,11 @@ router.get('/', treino.findAll);
 
 router.get('/cliente/:clienteId', treino.findAllByCliente);
 
-
 router.post('/cliente/:clienteId', treino.createTreino);
+
+// router.put('/cliente/:clienteId', treino.deleteTreino)
+
+router.delete('/:treinoId/cliente/:clienteId',  treino.deleteTreino)
+
 
 module.exports = router;

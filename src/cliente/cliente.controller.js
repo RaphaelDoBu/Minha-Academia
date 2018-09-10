@@ -1,6 +1,7 @@
 'use strict';
 var Cliente = require('../cliente/cliente');
-var Treino = require('../treino-especifico/treino-especifico')
+var Academia = require('../academia/academia');
+var academia = require('../academia/academia.controller')
 
 exports.findAll = function(req, res) {
     Cliente.find()
@@ -28,6 +29,8 @@ exports.create = (req, res) => {
             foco: req.body.foco,
             academias: req.userId
         });
+        
+        academia.findByAcademiaId(req.userId, dados);
         
         dados.save()
         .then(data => {

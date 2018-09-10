@@ -115,3 +115,25 @@ exports.delete = (req, res) => {
         });
     });
 };
+
+exports.findByAcademiaId = (academiaId, cliente, res) =>{
+    Academia.findById(academiaId)
+    .then(academia => {
+        if(!academia) {
+            return res.status(404).send({
+                message: "Não existe academia com id " + req.params.academiaId
+            });            
+        }
+        academia.clientes.push(cliente);
+        academia.save();
+    }).catch(err => {
+        if(err.kind === 'ObjectId') {
+            return res.status(404).send({
+                message: "Não existe academia com id " + req.params.academiaId
+            });                
+        }
+        return res.status(500).send({
+            message: "Erro ao buscar com id " + req.params.academiaId
+        });
+    });
+}

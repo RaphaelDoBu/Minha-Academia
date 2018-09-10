@@ -5,11 +5,11 @@ var authenticate = require('../authenticate/authenticate.controller');
 
 /**
  * @swagger
- * /auth:
+ * /auth/login:
  *   post:
  *     tags:
  *       - Autenticacao
- *     description: Autenticar uma academia
+ *     description: Fazer loogin da academia
  *     consumes:
  *       - application/json
  *     produces:
@@ -28,14 +28,30 @@ var authenticate = require('../authenticate/authenticate.controller');
  *               type: string
  *     responses:
  *      201:
- *       description: Criado
+ *       description: Logado
  *       schema:
  *            $ref: '#/definitions/autenticacao'
  */
-router.post('/', authenticate.loginUser);
+router.post('/login', authenticate.loginUser);
 
 
-
+/**
+ * @swagger
+ * /auth/logout:
+ *   post:
+ *     tags:
+ *       - Autenticacao
+ *     description: Logout da academia
+ *     consumes:
+ *       - application/json
+ *     produces:
+ *       - application/json
+ *     responses:
+ *      201:
+ *       description: Deslogado
+ *       schema:
+ *            $ref: '#/definitions/autenticacao'
+ */
 router.post('/logout', authenticate.logOutUser);
 
 

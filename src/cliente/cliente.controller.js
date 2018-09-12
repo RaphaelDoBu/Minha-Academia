@@ -4,8 +4,11 @@ var Academia = require('../academia/academia');
 var academia = require('../academia/academia.controller')
 
 exports.findAll = function(req, res) {
+    console.log(req.userId)
     Cliente.find({academia: req.userId})
     .then(dados => {
+        console.log(dados)
+
         res.send(dados);
     }).catch(err => {
         res.status(500).send({
@@ -27,11 +30,9 @@ exports.create = (req, res) => {
             peso: req.body.peso,
             dataNascimento: req.body.dataNascimento,
             foco: req.body.foco,
-            academias: req.userId
+            academia: req.userId
         });
-        
-        academia.findByAcademiaId(req.userId, dados);
-        
+        academia.findByAcademiaIdSaveCliente(req.userId, dados);
         dados.save()
         .then(data => {
             res.send(data);
@@ -106,6 +107,7 @@ exports.delete = (req, res) => {
                 message: "Não existe cliente com id " + req.params.clienteId
             });
         }
+        academia.findByAcademiaIdDeleteCliente(req.userId, dados);
         res.send({message: "Cliente deletado com sucesso!"});
     }).catch(err => {
         if(err.kind === 'ObjectId' || err.name === 'NotFound') {

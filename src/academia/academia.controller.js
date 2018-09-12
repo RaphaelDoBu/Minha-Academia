@@ -13,8 +13,7 @@ exports.findAll = function(req, res) {
 }
 
 exports.create = (req, res) => {
-         console.log(req.body);
-
+    var user = new Academia(req.body);
         if(!req.body.nome) {
             return res.status(400).send({
                 message: "Nome não pode ser vazio!"
@@ -29,14 +28,20 @@ exports.create = (req, res) => {
 
         });
 
-        dados.save()
-        .then(data => {
-            res.send(data);
-        }).catch(err => {
-            res.status(500).send({
-                message: err.message || "Algum erro ocorreu ao criar a academia!"
+        user.generateHash(req.body.password)
+        .then((hash) => {
+            user.password = hash;
+            user.save((err) => {
+                if (err && err.name === 'MongoError' && err.code === 11000) {
+                        res.status(400).send(err);
+            } else {
+                res.send(user)
+            }
             });
-        });
+        })
+        .catch((error) => {
+            res.status(401).send(err);
+    });
 };
 
 exports.findOne = (req, res) => {
@@ -114,7 +119,7 @@ exports.delete = (req, res) => {
     });
 };
 
-exports.findByAcademiaId = (academiaId, cliente, res) =>{
+exports.findByAcademiaIdSaveCliente = (academiaId, cliente, res) =>{
     Academia.findById(academiaId)
     .then(academia => {
         if(!academia) {
@@ -123,6 +128,28 @@ exports.findByAcademiaId = (academiaId, cliente, res) =>{
             });            
         }
         academia.clientes.push(cliente);
+        academia.save();
+    }).catch(err => {
+        if(err.kind === 'ObjectId') {
+            return res.status(404).send({
+                message: "Não existe academia com id " + req.params.academiaId
+            });                
+        }
+        return res.status(500).send({
+            message: "Erro ao buscar com id " + req.params.academiaId
+        });
+    });
+}
+
+exports.findByAcademiaIdDeleteCliente = (academiaId, cliente, res) =>{
+    Academia.findById(academiaId)
+    .then(academia => {
+        if(!academia) {
+            return res.status(404).send({
+                message: "Não existe academia com id " + req.params.academiaId
+            });            
+        }
+        academia.clientes.remove(cliente);
         academia.save();
     }).catch(err => {
         if(err.kind === 'ObjectId') {

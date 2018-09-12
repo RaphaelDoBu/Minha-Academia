@@ -14,6 +14,8 @@ exports.loginUser = async function(req, res) {
     }
 
     if(!await bcrypt.compareSync(password, user.password)){
+        console.log(password)
+        console.log( user.password)
         return res.status(400).send({error: 'Senha invalida'});
     }
 

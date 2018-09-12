@@ -124,7 +124,7 @@ exports.findByAcademiaIdSaveCliente = (academiaId, cliente, res) =>{
     .then(academia => {
         if(!academia) {
             return res.status(404).send({
-                message: "Não existe academia com id " + req.params.academiaId
+                message: "Não existe academia com id " + academiaId
             });            
         }
         academia.clientes.push(cliente);
@@ -132,11 +132,11 @@ exports.findByAcademiaIdSaveCliente = (academiaId, cliente, res) =>{
     }).catch(err => {
         if(err.kind === 'ObjectId') {
             return res.status(404).send({
-                message: "Não existe academia com id " + req.params.academiaId
+                message: "Não existe academia com id " + academiaId
             });                
         }
         return res.status(500).send({
-            message: "Erro ao buscar com id " + req.params.academiaId
+            message: "Erro ao buscar com id " + academiaId
         });
     });
 }
@@ -146,7 +146,7 @@ exports.findByAcademiaIdDeleteCliente = (academiaId, cliente, res) =>{
     .then(academia => {
         if(!academia) {
             return res.status(404).send({
-                message: "Não existe academia com id " + req.params.academiaId
+                message: "Não existe academia com id " + academiaId
             });            
         }
         academia.clientes.remove(cliente);
@@ -154,11 +154,11 @@ exports.findByAcademiaIdDeleteCliente = (academiaId, cliente, res) =>{
     }).catch(err => {
         if(err.kind === 'ObjectId') {
             return res.status(404).send({
-                message: "Não existe academia com id " + req.params.academiaId
+                message: "Não existe academia com id " + academiaId
             });                
         }
         return res.status(500).send({
-            message: "Erro ao buscar com id " + req.params.academiaId
+            message: "Erro ao buscar com id " + academiaId
         });
     });
 }

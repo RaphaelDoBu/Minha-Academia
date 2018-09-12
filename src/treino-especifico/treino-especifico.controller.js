@@ -41,7 +41,8 @@ exports.createTreino = (req, res) => {
         }
         const treino = new Treino({
             dia: req.body.dia, 
-            exercicio: req.body.exercicio
+            exercicio: req.body.exercicio,
+            cliente: dados
         });
         dados.treinos.push(treino);
         dados.save();

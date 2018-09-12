@@ -45,7 +45,8 @@ exports.create = (req, res) => {
 
 
 exports.findOne = (req, res) => {
-    Cliente.findById(req.params.clienteId)
+    console.log(req.userId)
+    Cliente.find({ "_id": req.params.clienteId, academia: req.userId})
     .then(dados => {
         if(!dados) {
             return res.status(404).send({

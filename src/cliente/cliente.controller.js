@@ -4,7 +4,6 @@ var Academia = require('../academia/academia');
 var academia = require('../academia/academia.controller')
 
 exports.findAll = function(req, res) {
-    console.log(req.userId)
     Cliente.find({academia: req.userId})
     .then(dados => {
         console.log(dados)
@@ -45,7 +44,6 @@ exports.create = (req, res) => {
 
 
 exports.findOne = (req, res) => {
-    console.log(req.userId)
     Cliente.find({ "_id": req.params.clienteId, academia: req.userId})
     .then(dados => {
         if(!dados) {

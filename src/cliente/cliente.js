@@ -20,10 +20,10 @@ var Cliente = new Schema({
     peso: String,
     dataNascimento: Date,
     foco: String,
-    academias:[{
+    academia:{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Academia'
-    }],
+    },
     treinos:[{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Treino',

@@ -46,7 +46,7 @@ router.get('/', treino.findAll);
  *         schema:
  *            $ref: '#/definitions/treino'
  */
-router.get('/cliente/:clienteId', treino.findAllByCliente);
+router.get('/cliente/:clienteId', treino.findAllByClienteTreino);
 
 /**
  * @swagger

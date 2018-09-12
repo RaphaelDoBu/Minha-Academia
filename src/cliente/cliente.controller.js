@@ -4,7 +4,7 @@ var Academia = require('../academia/academia');
 var academia = require('../academia/academia.controller')
 
 exports.findAll = function(req, res) {
-    Cliente.find()
+    Cliente.find({academia: req.userId})
     .then(dados => {
         res.send(dados);
     }).catch(err => {

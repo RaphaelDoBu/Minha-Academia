@@ -14,7 +14,7 @@ exports.findAll = function(req, res) {
     });
 }
 
-exports.findAllByCliente = function(req, res) {
+exports.findAllByClienteTreino = function(req, res) {
     Treino.find({ cliente:  req.params.clienteId })
     .then(dados => {
         res.send(dados);
@@ -41,12 +41,11 @@ exports.createTreino = (req, res) => {
         }
         const treino = new Treino({
             dia: req.body.dia, 
-            exercicio: req.body.exercicio,
-            cliente: req.params.clienteId
+            exercicio: req.body.exercicio
         });
         dados.treinos.push(treino);
-        treino.save();
         dados.save();
+        treino.save();
         res.send(dados);
     }).catch(err => {
         if(err.kind === 'ObjectId') {

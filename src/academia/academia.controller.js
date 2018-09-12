@@ -12,7 +12,6 @@ exports.findAll = function(req, res) {
     });
 }
 
-
 exports.create = (req, res) => {
          console.log(req.body);
 
@@ -33,7 +32,6 @@ exports.create = (req, res) => {
         dados.save()
         .then(data => {
             res.send(data);
-            // res.redirect('/')
         }).catch(err => {
             res.status(500).send({
                 message: err.message || "Algum erro ocorreu ao criar a academia!"

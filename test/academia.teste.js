@@ -49,7 +49,7 @@ describe('GET /academia/:id', function () {
 });
 
 /**
-* Teste de um cadastro de academiai
+* Teste de um cadastro de academia
 */
 describe('POST /academia', function () {
   let academia = {
@@ -77,7 +77,7 @@ describe('POST /academia', function () {
 /**
 * Teste de uma academia com erro
 */
-describe('POST /users', function () {
+describe('POST /academia', function () {
   let data = {
     "endereco": "rua local",
     "cnpj": "656566532",

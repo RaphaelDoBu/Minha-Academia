@@ -5,3 +5,5 @@ Sistema para auxiliar academias de baixo porte na organização de maneira geral
 * NodeJs
 * ExpressJs
 * Mongoose
+* Swagger --> http://localhost:3000/api-docs/
+* JWT e Bcrypt

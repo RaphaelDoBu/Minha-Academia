@@ -6,7 +6,6 @@
     "start": "nodemon ./bin/www",
     "devstart": "nodejs ./bin/www",
     "test": "mocha './test/*.js'"
-
   },
   "dependencies": {
     "bcrypt": "^3.0.0",
@@ -31,9 +30,9 @@
     "swagger-ui-express": "^3.0.10"
   },
   "devDependencies": {
-    "chai": "^4.1.2",
+    "chai": "^4.2.0",
     "mocha": "^5.2.0",
-    "nodemon": "^1.18.3",
-    "supertest": "^3.1.0"
+    "nodemon": "^1.18.4",
+    "supertest": "^3.3.0"
   }
 }

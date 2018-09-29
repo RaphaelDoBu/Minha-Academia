@@ -1,7 +1,7 @@
 'use strict'
 let mongoose = require('mongoose')
 
-//Dados para o Mlab
+// ========   Dados para o Mlab ==========
 // const server = 'ds229835.mlab.com:29835'
 // const database = 'db-minha-academima'
 // const user = 'user-test'
@@ -15,8 +15,14 @@ mongoose.connect('mongodb://localhost:27017/minha-academia', { useNewUrlParser: 
 var Schema = mongoose.Schema;
 
 var Treino = new Schema({
-    dia: String,
-    exercicio: String,
+    dia: {
+        type: String,
+        required: true
+    },
+    exercicio: {
+        type: String,
+        required: true
+    },
     cliente:{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Cliente',

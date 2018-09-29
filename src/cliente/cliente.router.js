@@ -26,7 +26,7 @@ const authorizeByRole = authMiddleware.authorizeByRole;
  *            $ref: '#/definitions/cliente'
  *             
  */
-router.get('/', cliente.findAll)
+router.get('/', authenticate, authorizeByRole, cliente.findAll)
 
 /**
  * @swagger
@@ -92,7 +92,7 @@ router.post('/', authenticate, authorizeByRole, cliente.create)
  *         schema:
  *            $ref: '#/definitions/cliente'
  */
-router.get('/:clienteId', cliente.findOne)
+router.get('/:clienteId', authenticate, authorizeByRole, cliente.findOne)
 
 /**
  * @swagger
@@ -120,7 +120,7 @@ router.get('/:clienteId', cliente.findOne)
  *         schema:
  *            $ref: '#/definitions/cliente'
  */
-router.put('/:clienteId', cliente.update)
+router.put('/:clienteId', authenticate, authorizeByRole, cliente.update)
 
 /**
  * @swagger
@@ -146,7 +146,7 @@ router.put('/:clienteId', cliente.update)
  *         schema:
  *            $ref: '#/definitions/cliente'
  */
-router.delete('/:clienteId', cliente.delete)
+router.delete('/:clienteId', authenticate, authorizeByRole, cliente.delete)
 
 module.exports = router;
 

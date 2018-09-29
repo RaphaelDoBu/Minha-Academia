@@ -2,6 +2,10 @@ var express = require('express');
 var router = express.Router();
 var treino = require('../treino-especifico/treino-especifico.controller');
 
+const authMiddleware = require('../middlewares/auth');
+const authenticate = authMiddleware.authenticate;
+const authorizeByRole = authMiddleware.authorizeByRole;
+
 /**
  * @swagger
  * /treino:
@@ -20,7 +24,7 @@ var treino = require('../treino-especifico/treino-especifico.controller');
  *            $ref: '#/definitions/treino'
  *             
  */
-router.get('/', treino.findAll);
+router.get('/', authenticate, authorizeByRole, treino.findAll);
 
 /**
  * @swagger
@@ -46,7 +50,7 @@ router.get('/', treino.findAll);
  *         schema:
  *            $ref: '#/definitions/treino'
  */
-router.get('/cliente/:clienteId', treino.findAllByClienteTreino);
+router.get('/cliente/:clienteId', authenticate, authorizeByRole, treino.findAllByClienteTreino);
 
 /**
  * @swagger
@@ -83,7 +87,7 @@ router.get('/cliente/:clienteId', treino.findAllByClienteTreino);
  *       schema:
  *            $ref: '#/definitions/treino'
  */
-router.post('/cliente/:clienteId', treino.createTreino);
+router.post('/cliente/:clienteId',  authenticate, authorizeByRole, treino.createTreino);
 
 /**
  * @swagger
@@ -115,7 +119,7 @@ router.post('/cliente/:clienteId', treino.createTreino);
  *         schema:
  *            $ref: '#/definitions/treino'
  */
-router.delete('/:treinoId/cliente/:clienteId',  treino.deleteTreino)
+router.delete('/:treinoId/cliente/:clienteId',  authenticate, authorizeByRole, treino.deleteTreino)
 
 
 module.exports = router;

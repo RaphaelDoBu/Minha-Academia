@@ -46,7 +46,7 @@ var Academia = new Schema({
         type: String,
         // required: true,
         // enum: ["ADMIN", "USER"],
-        default: "USER"
+        default: "ADMIN"
     },
     clientes:[{
         type: mongoose.Schema.Types.ObjectId,

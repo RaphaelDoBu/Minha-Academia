@@ -1,7 +1,9 @@
 'use strict'
 var mongoose = require('mongoose')
+var Schema = mongoose.Schema;
+const bcrypt = require('bcrypt');
 
-//Dados para o Mlab
+// ========   Dados para o Mlab ==========
 // const server = 'ds229835.mlab.com:29835'
 // const database = 'db-minha-academima'
 // const user = 'user-test'
@@ -18,9 +20,6 @@ mongoose.connect('mongodb://localhost:27017/minha-academia', { useNewUrlParser: 
         }
     }
 );
-
-var Schema = mongoose.Schema;
-const bcrypt = require('bcrypt');
   
 var Academia = new Schema({
     nome: {

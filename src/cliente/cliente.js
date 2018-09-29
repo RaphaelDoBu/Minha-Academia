@@ -15,12 +15,30 @@ mongoose.connect('mongodb://localhost:27017/minha-academia', { useNewUrlParser: 
 var Schema = mongoose.Schema;
 
 var Cliente = new Schema({
-    nome: String,
-    endereco: String,
-    cpf: Number,
-    peso: String,
-    dataNascimento: Date,
-    foco: String,
+    nome:  {
+        type: String,
+        required: true
+    },
+    endereco:  {
+        type: String,
+        required: true
+    },
+    cpf: {
+        type: Number,
+        required: true
+    },
+    peso: {
+        type: String,
+        required: true
+    },
+    dataNascimento:  {
+        type: Date,
+        required: true
+    },
+    foco: {
+        type: String,
+        required: true
+    },
     academia:{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Academia'

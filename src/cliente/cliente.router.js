@@ -2,9 +2,11 @@ var express = require('express');
 var router = express.Router();
 var cliente = require('../cliente/cliente.controller');
 
-const authMiddleware = require('../middlewares/auth')
+const authMiddleware = require('../middlewares/auth');
+const authenticate = authMiddleware.authenticate;
+const authorizeByRole = authMiddleware.authorizeByRole;
 
-router.use(authMiddleware);
+// router.use(authMiddleware);
 
 /**
  * @swagger
@@ -63,7 +65,7 @@ router.get('/', cliente.findAll)
  *       schema:
  *            $ref: '#/definitions/cliente'
  */
-router.post('/', cliente.create)
+router.post('/', authenticate, authorizeByRole, cliente.create)
 
 
 /**

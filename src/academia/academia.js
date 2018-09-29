@@ -23,11 +23,32 @@ var Schema = mongoose.Schema;
 const bcrypt = require('bcrypt');
   
 var Academia = new Schema({
-    nome: String,
-    endereco: String,
-    cnpj: Number,
-    username: String,
-    password: String,
+    nome: {
+        type: String,
+        required: true
+    },
+    endereco:  {
+        type: String,
+        required: true
+    },
+    cnpj:  {
+        type: Number,
+        required: true
+    },
+    username:  {
+        type: String,
+        required: true
+    },
+    password:  {
+        type: String,
+        required: true
+    },
+    role: {
+        type: String,
+        // required: true,
+        // enum: ["ADMIN", "USER"],
+        default: "ADMIN"
+    },
     clientes:[{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Cliente',

@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 
 const academia = require('../academia/academia.controller');
+const authMiddleware = require('../middlewares/auth');
+const authenticate = authMiddleware.authenticate;
 
 /**
  * @swagger
@@ -21,7 +23,7 @@ const academia = require('../academia/academia.controller');
  *            $ref: '#/definitions/academia'
  *             
  */
-router.get('/', academia.findAll)
+router.get('/', authenticate,academia.findAll)
 
 /**
  * @swagger

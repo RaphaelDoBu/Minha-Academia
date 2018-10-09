@@ -4,16 +4,25 @@ const Academia = require('../../src/academia/academia')
 
 exports.authenticate = (req, res, next) =>{
 
-    if (!req.cookies.access_token) {
-        return res.status(401).json({ error: 'UNAUTHORIZED, TOKEN IS EMPTY' });
+  const authHeader = req.headers.authorization;
+  if(!authHeader){
+      return res.status(401).send({error: 'O token não foi informado'});
+  }
+  const parts = authHeader.split(' ');
+  if(!parts.length === 2){
+      return res.status(401).send({error: 'Token erro'});
+  }
+  const[schema, token] = parts;
+  if(!/^Bearer$/i.test(schema)){
+      return res.status(401).send({error: 'Token malformatado'});
+  }
+  jwt.verify(token, authConfig.secret, (err, decoded) =>{
+      if(err){
+          return res.status(401).send({error: 'Token invalido'});
       }
-      const token = req.cookies.access_token;
-      jwt.verify(token, authConfig.secret , (error, userData) => {
-        if (error) return res.status(422).json({ error });
-
-        req.userId = userData.id;
-        next();
-    });
+      req.userId = decoded.id;
+      return next();
+  })
 }
 
 exports.authorizeByRole = async (req, res, next) => {

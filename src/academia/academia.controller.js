@@ -1,13 +1,16 @@
 'use strict';
 var Academia = require('../academia/academia');
 
+
+
 exports.findAll = function(req, res) {
-    Academia.find()
+    console.log(req.userId)
+    Academia.findById(req.userId)
     .then(dados => {
         res.send(dados);
     }).catch(err => {
         res.status(500).send({
-            message: err.message || "Algum erro ocorreu ao recuperar academia"
+            message: err.message || "Algum erro ocorreu ao recuperar cliente"
         });
     });
 }

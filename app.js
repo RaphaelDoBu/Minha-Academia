@@ -46,7 +46,14 @@ app.get('/swagger.json', function(req, res) {
 });
 
 
-
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, access_token, X-Requested-With, Content-Type, Accept, Authorization");
+    res.cookie("Access-Control-Allow-Origin", "*");
+    res.cookie("Access-Control-Allow-Headers", "Origin, access_token, X-Requested-With, Content-Type, Accept, Authorization");
+    next();
+  });
+  
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');

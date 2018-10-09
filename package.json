@@ -16,7 +16,7 @@
     "express": "~4.0.0",
     "jsonwebtoken": "^8.3.0",
     "mongodb": "^3.1.4",
-    "mongoose": "^5.2.9",
+    "mongoose": "^5.3.2",
     "morgan": "~1.0.0",
     "promise": "^8.0.1",
     "static-favicon": "~1.0.0",
@@ -26,7 +26,7 @@
     "swagger-jsdoc": "^1.3.0",
     "swagger-model-validator": "^3.0.4",
     "swagger-tools": "^0.10.4",
-    "swagger-ui": "^3.18.2",
+    "swagger-ui": "^3.19.3",
     "swagger-ui-express": "^3.0.10"
   },
   "devDependencies": {

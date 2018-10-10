@@ -21,10 +21,5 @@ exports.loginUser = async function(req, res) {
 
   
 exports.logOutUser = (req, res, next) => {
-    if(req.headers.authorization){
-        req.headers.authorization = '';
-        token = ''
-        res.status(200).json({ message: 'Token deleted' })
-    }
-    return res.status(400).json({ message: 'Não existe token' });
+    res.status(200).json({ message: 'Token deleted' })
 };

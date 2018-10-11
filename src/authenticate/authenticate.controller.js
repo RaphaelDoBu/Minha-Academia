@@ -18,8 +18,3 @@ exports.loginUser = async function(req, res) {
     });
     res.json({user, token, message: 'User logged with success'});
 }
-
-  
-exports.logOutUser = (req, res, next) => {
-    res.status(200).json({ message: 'Token deleted' })
-};

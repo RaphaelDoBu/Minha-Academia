@@ -9,7 +9,7 @@ var authenticate = require('../authenticate/authenticate.controller');
  *   post:
  *     tags:
  *       - Autenticacao
- *     description: Fazer loogin da academia
+ *     description: Fazer login da academia
  *     consumes:
  *       - application/json
  *     produces:
@@ -33,27 +33,6 @@ var authenticate = require('../authenticate/authenticate.controller');
  *            $ref: '#/definitions/autenticacao'
  */
 router.post('/login', authenticate.loginUser);
-
-
-/**
- * @swagger
- * /auth/logout:
- *   post:
- *     tags:
- *       - Autenticacao
- *     description: Logout da academia
- *     consumes:
- *       - application/json
- *     produces:
- *       - application/json
- *     responses:
- *      201:
- *       description: Deslogado
- *       schema:
- *            $ref: '#/definitions/autenticacao'
- */
-router.post('/logout', authenticate.logOutUser);
-
 
 
 module.exports = router;

@@ -3,7 +3,7 @@ const authConfig = require('../../config/auth.json');
 const Academia = require('../../src/academia/academia')
 
 exports.authenticate = (req, res, next) =>{
-
+  console.log(req.headers.authorization)
   const authHeader = req.headers.authorization;
   if(!authHeader){
       return res.status(401).send({error: 'O token não foi informado'});

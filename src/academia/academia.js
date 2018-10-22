@@ -26,12 +26,24 @@ var Academia = new Schema({
         type: String,
         required: true
     },
-    endereco:  {
+    cnpj:  {
+        type: Number,
+        required: true
+    },
+    estado:  {
         type: String,
         required: true
     },
-    cnpj:  {
-        type: Number,
+    cidade:  {
+        type: String,
+        required: true
+    },
+    bairro:  {
+        type: String,
+        required: true
+    },
+    rua:  {
+        type: String,
         required: true
     },
     username:  {
@@ -44,7 +56,6 @@ var Academia = new Schema({
     },
     role: {
         type: String,
-        // required: true,
         // enum: ["ADMIN", "USER"],
         default: "ADMIN"
     },

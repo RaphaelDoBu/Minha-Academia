@@ -22,15 +22,6 @@ exports.create = (req, res) => {
                 message: "Nome não pode ser vazio!"
             });
         }
-        const dados = new Academia({
-            nome: req.body.nome, 
-            endereco: req.body.endereco,
-            cnpj: req.body.cnpj,
-            username: req.body.username,
-            password: req.body.password
-
-        });
-
         user.generateHash(req.body.password)
         .then((hash) => {
             user.password = hash;

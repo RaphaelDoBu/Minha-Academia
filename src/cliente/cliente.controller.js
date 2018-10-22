@@ -1,6 +1,5 @@
 'use strict';
 var Cliente = require('../cliente/cliente');
-var Academia = require('../academia/academia');
 var academia = require('../academia/academia.controller')
 
 exports.findAll = function(req, res) {
@@ -17,17 +16,21 @@ exports.findAll = function(req, res) {
 }
 
 exports.create = (req, res) => {
+
         if(!req.body.nome) {
             return res.status(400).send({
                 message: "Nome não pode ser vazio!"
             });
         }
         const dados = new Cliente({
-            nome: req.body.nome, 
-            endereco: req.body.endereco,
+            nome: req.body.nome,
             cpf: req.body.cpf,
-            peso: req.body.peso,
+            estado: req.body.estado,
+            cidade: req.body.cidade,
+            bairro: req.body.bairro,
+            rua: req.body.rua,
             dataNascimento: req.body.dataNascimento,
+            peso: req.body.peso,
             foco: req.body.foco,
             academia: req.userId
         });

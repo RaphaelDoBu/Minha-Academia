@@ -19,16 +19,28 @@ var Cliente = new Schema({
         type: String,
         required: true
     },
-    endereco:  {
-        type: String,
-        required: true
-    },
     cpf: {
         type: Number,
         required: true
     },
-    peso: {
+    estado:  {
         type: String,
+        required: true
+    },
+    cidade:  {
+        type: String,
+        required: true
+    },
+    bairro:  {
+        type: String,
+        required: true
+    },
+    rua:  {
+        type: String,
+        required: true
+    },
+    peso: {
+        type: Number,
         required: true
     },
     dataNascimento:  {
